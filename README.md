@@ -19,55 +19,6 @@ Este projeto modela um banco de dados relacional para uma concessionária
 com múltiplas filiais e escreve consultas SQL que respondem a cada uma
 dessas perguntas com dados.
 
-## 🗂️ Modelo de Dados
-
-```mermaid
-erDiagram
-    FILIAIS ||--o{ VENDEDORES : possui
-    FILIAIS ||--o{ CARROS : estoca
-    CARROS ||--o{ VENDAS : "é vendido em"
-    CLIENTES ||--o{ VENDAS : realiza
-    VENDEDORES ||--o{ VENDAS : conduz
-
-    FILIAIS {
-        int id PK
-        text nome
-        text localizacao
-    }
-    VENDEDORES {
-        int id PK
-        text nome
-        int id_filial FK
-    }
-    CARROS {
-        int id PK
-        text marca
-        text modelo
-        text categoria
-        real preco_tabela
-        int id_filial FK
-        int em_estoque
-    }
-    CLIENTES {
-        int id PK
-        text nome
-        text cidade
-    }
-    VENDAS {
-        int id PK
-        int id_carro FK
-        int id_cliente FK
-        int id_vendedor FK
-        text data_venda
-        real preco_final
-    }
-```
-
-O modelo tem 5 tabelas relacionadas: `filiais`, `vendedores`, `carros`,
-`clientes` e `vendas`, com chaves estrangeiras conectando tudo — permitindo
-responder perguntas que cruzam várias dimensões do negócio (ex: "qual
-vendedor de qual filial vendeu qual categoria de carro para qual cliente").
-
 ## 🔎 Perguntas de negócio respondidas (com SQL)
 
 | # | Pergunta de negócio |
@@ -82,9 +33,6 @@ vendedor de qual filial vendeu qual categoria de carro para qual cliente").
 | 8 | De quais cidades vêm os clientes que mais compram? |
 | 9 | Ranking de vendedores agrupado por filial? |
 | 10 | Qual foi a venda de maior valor do período? |
-
-Todas as consultas estão comentadas e organizadas em
-[`sql/03_perguntas_de_negocio.sql`](sql/03_perguntas_de_negocio.sql).
 
 ## 📊 Principais Insights (a partir dos dados simulados)
 
@@ -114,8 +62,8 @@ Saída de exemplo:
 RELATÓRIO DE NEGÓCIO — PREMIUM MOTORS
 =======================================================
 
-📊 Total de vendas no período: 130
-💰 Faturamento total: R$ 27.377.619,62
+📊 Total de vendas no período: 12
+💰 Faturamento total: R$ 20.377.619,62
 🎫 Ticket médio: R$ 210.597,07
 
 🏆 Top 3 vendedores por faturamento:
@@ -124,9 +72,9 @@ RELATÓRIO DE NEGÓCIO — PREMIUM MOTORS
    - Lucas Martins: R$ 3.726.450,87
 
 🏢 Faturamento por filial:
-   - Premium Motors - Barueri: R$ 13.287.324,41 (48 unidades)
-   - Premium Motors - Campinas: R$ 10.468.217,84 (56 unidades)
-   - Premium Motors - Osasco: R$ 3.622.077,37 (26 unidades)
+   - Premium Motors - Barueri: R$ 13.287.324,41 (5 unidades)
+   - Premium Motors - Campinas: R$ 10.468.217,84 (4 unidades)
+   - Premium Motors - Osasco: R$ 3.622.077,37 (3 unidades)
 ```
 
 ## 🛠️ Como rodar este projeto
