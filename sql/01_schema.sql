@@ -1,9 +1,3 @@
--- ============================================================
--- SCHEMA: Premium Motors — Sistema de Vendas Multi-Filial
--- ============================================================
--- Este script cria a estrutura do banco de dados. Rode este
--- arquivo primeiro, e depois o dados_inserts.sql.
-
 CREATE TABLE IF NOT EXISTS filiais (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     nome TEXT NOT NULL
