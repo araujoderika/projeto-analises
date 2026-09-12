@@ -1,106 +1,74 @@
-# 🚗 Premium Motors — Análise de Vendas Multi-Filial em SQL
+# 🚗 Premium Motors — Análise de Banco de Dados & Relatório de Negócio
 
-Projeto de banco de dados relacional e análise de vendas para uma
-concessionária fictícia com 3 filiais, simulando um cenário real de
-**Business Intelligence** no varejo automotivo.
+[![Python](https://img.shields.io/badge/Python-3.x-blue.svg?logo=python&logoColor=white)](https://www.python.org/)
+[![SQLite](https://img.shields.io/badge/SQLite-3-003B57.svg?logo=sqlite&logoColor=white)](https://www.sqlite.org/)
 
-## 🎯 Contexto e Problema de Negócio
+Projeto de modelagem de banco de dados relacional e automação de relatório gerencial para a concessionária de luxo **Premium Motors**. 
 
-A diretoria comercial da Premium Motors precisa de respostas rápidas
-para decisões do dia a dia:
-
-- A empresa está performando bem? Quanto faturou?
-- Quais vendedores e filiais são os melhores — e quais precisam de apoio?
-- Existe estoque parado consumindo capital sem retorno?
-- Os descontos concedidos estão sob controle?
-- Em quais meses e regiões vale a pena investir mais em marketing?
-
-Este projeto modela um banco de dados relacional para uma concessionária
-com múltiplas filiais e escreve consultas SQL que respondem a cada uma
-dessas perguntas com dados.
-
-## 🔎 Perguntas de negócio respondidas (com SQL)
-
-| # | Pergunta de negócio |
-|---|---|
-| 1 | Qual o faturamento total e o ticket médio? |
-| 2 | Quem são os top 3 vendedores por faturamento? |
-| 3 | Qual filial fatura mais / vende mais unidades? |
-| 4 | Qual categoria de carro gera mais receita? |
-| 5 | Quais carros estão parados em estoque (capital empatado)? |
-| 6 | Como o faturamento evoluiu mês a mês? |
-| 7 | Qual vendedor concede mais desconto em média? |
-| 8 | De quais cidades vêm os clientes que mais compram? |
-| 9 | Ranking de vendedores agrupado por filial? |
-| 10 | Qual foi a venda de maior valor do período? |
-
-## 📊 Principais Insights (a partir dos dados simulados)
-
-> Dados sintéticos gerados para fins de portfólio — 130 vendas ao longo de 2025.
-
-- **Faturamento total simulado:** R$ 27,3 milhões, com ticket médio de ~R$ 210 mil por venda
-- **Categoria "Esportivo"** foi a que mais gerou receita (R$ 12,6 mi em apenas 17 unidades) — ticket alto compensa baixo volume
-- A filial **Barueri** liderou em faturamento, mesmo com menos vendas que Campinas — indício de mix de produto mais premium
-- Fevereiro/2025 foi o mês de maior faturamento — possível sazonalidade a investigar
-- Foram identificadas unidades de "Hatch" com maior concentração parada em estoque, sinalizando possível necessidade de ação promocional
-
-## 💰 Relatório com valores formatados como moeda
-
-O SQL puro não formata moeda no padrão brasileiro (R$ 1.234.567,89) —
-essa responsabilidade fica pra camada de apresentação. Por isso, além
-das queries, o projeto inclui [`relatorio_negocio.py`](relatorio_negocio.py),
-que roda as principais análises e imprime os números já formatados:
-
-```bash
-python3 relatorio_negocio.py
-```
-
-Saída de exemplo:
-
-```
-=======================================================
-RELATÓRIO DE NEGÓCIO — PREMIUM MOTORS
-=======================================================
-
-📊 Total de vendas no período: 12
-💰 Faturamento total: R$ 20.377.619,62
-🎫 Ticket médio: R$ 210.597,07
-
-🏆 Top 3 vendedores por faturamento:
-   - Patrícia Gomes: R$ 5.287.757,02
-   - Camila Rocha: R$ 3.865.063,01
-   - Lucas Martins: R$ 3.726.450,87
-
-🏢 Faturamento por filial:
-   - Premium Motors - Barueri: R$ 13.287.324,41 (5 unidades)
-   - Premium Motors - Campinas: R$ 10.468.217,84 (4 unidades)
-   - Premium Motors - Osasco: R$ 3.622.077,37 (3 unidades)
-```
-
-## 🛠️ Como rodar este projeto
-
-Requer apenas o [SQLite](https://www.sqlite.org/) (ou qualquer SGBD compatível
-com pequenas adaptações de sintaxe).
-
-```bash
-sqlite3 premium_motors.db < sql/01_schema.sql
-sqlite3 premium_motors.db < sql/02_dados.sql
-sqlite3 premium_motors.db < sql/03_perguntas_de_negocio.sql
-```
-
-Ou, usando o DB Browser for SQLite: crie um banco novo, abra o "Execute SQL"
-e rode os três arquivos na ordem (schema → dados → perguntas).
-
-
-## 🚀 Próximos passos
-
-- Conectar este banco a uma ferramenta de BI (Power BI / Looker Studio) para
-  um dashboard visual
-- Adicionar análise de sazonalidade e projeção de vendas futuras
-- Expandir o modelo para incluir pós-venda e satisfação do cliente
+O sistema integra a criação de estrutura de dados (DDL), carga de dados (DML) e execução automatizada via Python para responder a **10 perguntas estratégicas de negócio**.
 
 ---
 
-**Tecnologias:** SQL (SQLite) · Python (geração de dados) · Modelagem relacional
+## 📌 Funcionalidades Principais
 
-**Autora:** Érika Araujo — [LinkedIn](https://www.linkedin.com/in/erikadaraujo/)
+- 🗄️ **Modelagem Relacional (SQL):** Criação de tabelas relacionais (`carros`, `clientes`, `vendedores`, `filiais`, `vendas`).
+- ⚡ **Automação via Python:** Leitura automatizada dos scripts `.sql` e execução direta no banco **SQLite**.
+- 📊 **10 Análises Estratégicas:** Consultas complexas usando `JOIN`, `GROUP BY`, `SUM`, `AVG`, `LEFT JOIN` e funções de agregação.
+- 💵 **Formatação de Valores:** Exibição amigável dos resultados financeiros em moeda brasileira (`R$`).
+
+---
+
+## 📊 As 10 Análises de Negócio Incluídas
+1.Faturamento Total, Ticket Médio e Volume de Vendas
+
+2.Top 3 Vendedores por Faturamento
+
+3.Desempenho por Filial (Barueri, Campinas, Osasco)
+
+4.Receita por Categoria de Veículo (Esportivo, Hatch, Sedan, etc.)
+
+5.Estoque Parado (Modelos sem vendas registradas)
+
+6.Evolução Mensal do Faturamento
+
+7.Média de Desconto Concedido por Vendedor
+
+8.Faturamento por Cidade de Origem dos Clientes
+
+9.Ranking dos Vendedores por Filial
+
+10.Identificação da Venda de Maior Valor (Ticket Máximo)
+
+## 🚀 Como Executar o Projeto
+Pré-requisitos
+Python 3.8+ instalado.
+
+## Passo a Passo
+Clone o repositório:
+
+Bash
+git clone [https://github.com/seu-usuario/premium-motors.git](https://github.com/seu-usuario/premium-motors.git)
+cd premium-motors
+
+Execute o script principal:
+
+Bash
+python relatorio.negocio.py
+## 📸 Exemplo de Execução
+Ao rodar o script relatorio.negocio.py, a saída formatada no terminal exibe o relatório gerencial completo:
+<img width="1873" height="956" alt="Captura de tela 2026-09-12 164657" src="https://github.com/user-attachments/assets/a9a76250-3519-4858-9335-31cbe08c6fd0" />
+
+
+
+## 🛠️ Tecnologias Utilizadas
+Python: Automação e formatação de relatório.
+
+SQLite3: Banco de dados relacional.
+
+SQL (DDL & DML): Modelagem e consultas.
+
+## ✒️ Autor
+Desenvolvido por Érika Araujo 👋
+
+GitHub: @araujoderika
+LinkedIn: https://www.linkedin.com/in/erikadaraujo/
