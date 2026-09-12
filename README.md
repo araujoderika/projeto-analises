@@ -91,18 +91,6 @@ sqlite3 premium_motors.db < sql/03_perguntas_de_negocio.sql
 Ou, usando o DB Browser for SQLite: crie um banco novo, abra o "Execute SQL"
 e rode os três arquivos na ordem (schema → dados → perguntas).
 
-## 📁 Estrutura do repositório
-
-```
-premium-motors-analise-vendas/
-├── sql/
-│   ├── 01_schema.sql               → criação das tabelas
-│   ├── 02_dados.sql                → carga de dados de exemplo
-│   └── 03_perguntas_de_negocio.sql → as 10 análises de negócio
-├── gerar_dados.py                  → script usado para gerar os dados sintéticos
-├── relatorio_negocio.py            → roda as análises e formata os valores em R$
-└── README.md
-```
 
 ## 🚀 Próximos passos
 
